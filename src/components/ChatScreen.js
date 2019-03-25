@@ -4,6 +4,7 @@ import MessageList from './MessageList';
 import SendMessageForm from './SendMessageForm';
 import TypingIndicator from './TypingIndicator';
 import WhosOnlineList from './WhosOnlineList';
+import './../index.css'
 import dotenv from 'dotenv';
 dotenv.config();
 
@@ -79,56 +80,34 @@ export default class ChatScreen extends Component {
         roomId: this.state.currentRoom.id
         })
         .catch(error => console.error('error', error))
-  
   }
 
   render() {
-    
-     const styles = {
-       container: {
-         height: '100vh',
-         display: 'flex',
-         flexDirection: 'column',
-       },
-       chatContainer: {
-         display: 'flex',
-         flex: 1,
-       },
-       whosOnlineListContainer: {
-         width: '300px',
-         flex: 'none',
-         padding: 20,
-         backgroundColor: '#2c303b',
-         color: 'white',
-       },
-       chatListContainer: {
-         padding: 20,
-         width: '85%',
-         display: 'flex',
-         flexDirection: 'column',
-       },
-    }
-            
+          
      return (
-        <div style={styles.container}>
-        <div style={styles.chatContainer}>
-          <aside style={styles.whosOnlineListContainer}>
-            <h2>Who's online PLACEHOLDER</h2>
-            <WhosOnlineList 
-             currentUser={this.state.currentUser}
-             users={this.state.currentRoom.users} 
-             />
-          </aside>
-          <section style={styles.chatListContainer}>
-           <MessageList
-             messages={this.state.messages}
-             style={styles.chatList}
-           />
-           <TypingIndicator usersWhoAreTyping = {this.state.usersWhoAreTyping} />
-           <SendMessageForm onSubmit = {this.sendMessage} onChange = {this.sendTypingEvent}/>
-          </section>
+        <div className="mainContainer">
+            <div className="chatContainer">
+                 <aside className = "whosOnlineListContainer">
+                    <h2>Who's online PLACEHOLDER</h2>
+                    <WhosOnlineList 
+                    currentUser={this.state.currentUser}
+                    users={this.state.currentRoom.users} 
+                    />
+                    <div className="">
+                        <h2> Create New Group </h2>
+                    </div>
+                </aside>          
+              
+                <div className="chatListContainer">
+                    <MessageList
+                        messages={this.state.messages}
+                        className = "chatList"
+                    />
+                    <TypingIndicator usersWhoAreTyping = {this.state.usersWhoAreTyping} />
+                    <SendMessageForm onSubmit = {this.sendMessage} onChange = {this.sendTypingEvent}/>
+                </div>
+            </div>
         </div>
-      </div>
      )
     } 
     
