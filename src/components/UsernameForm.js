@@ -20,15 +20,16 @@ export default class UsernameForm extends Component {
     return (
         <div className="container">
             <div className="row">
-                <div className="col-sm-12 col-md-6 col-lg-6">
-                    <h1 className="welcome">Welcome to Slack App</h1>
+                <div className="col-sm-12 col-md-6 col-lg-6 mx-auto">
+                    <img src="./images/slack.jpg" className="slack-image" />
+                    <h1 className="welcome text-info text-center"> Welcome to Slack App </h1>
                 </div>
             </div>
             <div className="row">
-                <div className="col-sm-12 col-md-6 col-lg-6">
+                <div className="col-sm-12 col-md-6 col-lg-6  mx-auto">
                     <Form onSubmit={this.onSubmit}>
                     <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
-                    <Label for="exampleEmail" className="mr-sm-2 text-capitalize"> please enter your username </Label>
+                    <Label for="username" className="mr-sm-2 text-capitalize"> please enter your username </Label>
                     <Input
                         type="text" 
                         placeholder= "what is your username?" 
@@ -36,7 +37,7 @@ export default class UsernameForm extends Component {
                         name="username"
                         />
                     </FormGroup>
-                    <Button className="mt-2"> Submit</Button>
+                    <Button className="btn btn-info mt-2 text-center"> Submit</Button>
                     </Form>
                 </div> 
             </div>
