@@ -33,17 +33,8 @@ export default class ChatScreen extends Component {
         .connect()
         .then(currentUser => {
             this.setState({currentUser})
+            //this.currentUser = currentUser;
             
-            // this.currentUser.getJoinableRooms()
-            // .then(joinableRooms => {
-            //     this.setState({
-            //         joinableRooms,
-            //         joinedRooms: this.currentUser.rooms
-            //     })
-            // })
-            // .catch ( error => console.log("Erron on joinableRooms", error))
-
-
             return currentUser.subscribeToRoom({
                    roomId:"19394190",
                    messageLimit: 100,
@@ -67,9 +58,6 @@ export default class ChatScreen extends Component {
                             )
                         })
                       },
-                    //   onUserCameOnline: () => this.forceUpdate(),
-                    //   onUserWentOffline: () => this.forceUpdate(),
-                    //   onUserJoined: () => this.forceUpdate()
                     onPresenceChange: () => this.forceUpdate(),
                 }
             })
@@ -79,6 +67,19 @@ export default class ChatScreen extends Component {
         })
         .catch(error => console.error(error))
   }
+
+//Joinable Rooms
+// joinableRooms = () => {
+//      return this.currentUser.getJoinableRooms()
+//             .then(joinableRooms => {
+//                 this.setState({
+//                     joinableRooms,
+//                     joinedRooms: this.currentUser.rooms
+//                 })
+//             })
+//             .catch ( error => console.log("Erron on joinableRooms", error))
+// }
+
 //Send Message
   sendMessage = (text) => {
     this.state.currentUser.sendSimpleMessage({
@@ -96,11 +97,12 @@ export default class ChatScreen extends Component {
   }
   // Create Room
   createRoom = (name) => {
-      this.currentUser.createRoom({
-          name
-      })
-      .then(room => this.subscribeToRoom(room.id))
-      .catch(error => console.log("Error with create room :", error))
+      console.log("Room created")
+    //   this.currentUser.createRoom({
+    //       name
+    //   })
+    //   .then(room => this.subscribeToRoom(room.id))
+    //   .catch(error => console.log("Error with create room :", error))
   }
 
   render() {
@@ -109,13 +111,15 @@ export default class ChatScreen extends Component {
         <div className="mainContainer">
             <div className="chatContainer">
                  <aside className = "whosOnlineListContainer">
-                    <h2>Who's online PLACEHOLDER</h2>
+                    <h2>Who's online</h2>
                     <WhosOnlineList 
                     currentUser={this.state.currentUser}
                     users={this.state.currentRoom.users} 
                     />
+                    <div className="chatListContainer">
                     <RoomList rooms = {[...this.state.joinableRooms, ...this.state.joinedRooms]} />
                     <NewRoomForm createRoom = {this.createRoom} />
+                    </div>
                 </aside>          
               
                 <div className="chatListContainer">

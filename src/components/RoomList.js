@@ -8,7 +8,7 @@ export default class RoomList extends Component {
          <h1> Room List </h1>
          <ul>
         {rooms.map(room => {
-            return (<li> <a href="#"> {room.name} </a> </li>)
+            return (<li key={room.id}>  <a href="#"> {room.name} </a> </li>)
         })}
         </ul>
       </div>
