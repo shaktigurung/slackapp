@@ -111,17 +111,16 @@ export default class ChatScreen extends Component {
         <div className="mainContainer">
             <div className="chatContainer">
                  <aside className = "whosOnlineListContainer">
+                    <div className="roomlist">
+                    <RoomList rooms = {[...this.state.joinableRooms, ...this.state.joinedRooms]}  currentRoom = {this.state.currentRoom} />
+                    <NewRoomForm createRoom = {this.createRoom} />
+                    </div>  
                     <h2>Who's online</h2>
                     <WhosOnlineList 
                     currentUser={this.state.currentUser}
                     users={this.state.currentRoom.users} 
-                    />
-                    <div className="chatListContainer">
-                    <RoomList rooms = {[...this.state.joinableRooms, ...this.state.joinedRooms]} />
-                    <NewRoomForm createRoom = {this.createRoom} />
-                    </div>
-                </aside>          
-              
+                    /> 
+                </aside>   
                 <div className="chatListContainer">
                     <MessageList
                         messages={this.state.messages}

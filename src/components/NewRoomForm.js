@@ -18,7 +18,7 @@ export default class NewRoomForm extends Component {
  render() {
 
    return (
-   <div className ="messagecontainer">
+   <div className ="new-room-form">
        <div>
          <form onSubmit={this.onSubmit} className ="form" >
            <input
